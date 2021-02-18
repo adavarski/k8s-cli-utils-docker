@@ -17,7 +17,7 @@ Expected environment variables:
 #### Usage 
 Start the container with an interactive tools i.e. sh:
 ```
-docker run -it --rm -e "K8S_API_SERVER=<k8s-api-server-url>" -e "K8S_TOKEN=<the_token>" coco/k8s-cli-utils /bin/sh
+docker run -it --rm -e "K8S_API_SERVER=<k8s-api-server-url>" -e "K8S_TOKEN=<the_token>" davarski/k8s-cli-utils:local /bin/sh
 ```
 #### Example
 
@@ -143,6 +143,20 @@ current-context: k8s-context
 cd k8s-RBAC
 docker build -t davarski/k8s-cli-utils:development .
 ```
+#### Running locally
+
+Expected environment variables:
+
+- K8S_API_SERVER: the URL of the API server of the Kubernetes cluster
+- K8S_TOKEN: For authentication with the K8s API server, it uses [service account tokens](https://kubernetes.io/docs/admin/authentication/#service-account-tokens). This is the token of the service account.
+
+#### Usage 
+Start the container with an interactive tools i.e. sh:
+```
+docker run -it --rm -e "K8S_API_SERVER=<k8s-api-server-url>" -e "K8S_TOKEN=<the_token>" davarski/k8s-cli-utils:development /bin/sh
+```
+
+
 
 Example:
 ```
