@@ -160,7 +160,7 @@ docker run -it --rm -e "K8S_API_SERVER=<k8s-api-server-url>" -e "K8S_TOKEN=<the_
 
 Example:
 ```
-kubectl apply -f 00-namespace.yml -f 05-serviceaccount.yml -f 07-role.yml -f 08-rolebinding.yml
+$ kubectl apply -f 00-namespace.yml -f 05-serviceaccount.yml -f 07-role.yml -f 08-rolebinding.yml
 $ kubectl get serviceaccounts k8s-user -n development -o yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -240,18 +240,17 @@ $ echo "ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrOW9kR2hmU0hSelExTmlNMVpRU1ZSUVps
 eyJhbGciOiJSUzI1NiIsImtpZCI6Ik9odGhfSHRzQ1NiM1ZQSVRQZlQ2NUJQRDFVN2FMOVNIWVpFWS15VktvTXMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZXZlbG9wbWVudCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrOHMtdXNlci10b2tlbi02OXQ4bSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrOHMtdXNlciIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjIyYjg4MDRmLWI4MjEtNGNlNy04MmYzLWQzNGI2YTU3MTc1NCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZXZlbG9wbWVudDprOHMtdXNlciJ9.HXL97cbGmlpxem7xfLAyXwEzeb2c-dlGelqsBOXZGINPdVtyD7J_RSwPDg05ePAW9Q-n1cpUyHNxRWDIDtWuH-ANg6GpdeUgwKAHfwNqZgLAC96wf9tlYLPG0IVziMgYnqsJJxh4mWyJVhv3tx3NWlfu3ZbSZV3i6aSvIGJn_druc7fDfHobfLsbq_tV9Kh57hTM_9_bQHnwH_82rA6yLWeZPbyTq8ZEU7COrAkJLhKQc1Al6rB-3iGw0GEZ4cQ91DcFlnHrWEzGQRt84Rj_AALEaY7vUtLyFI3UXuDb0owwtae2VmwKf_qaN4dDWCCQ7o0FmXMfU65K9-noYrc_lQ
 
 $ docker run -it --rm -e "K8S_API_SERVER=https://192.168.0.105:6443" -e "K8S_TOKEN=eyJhbGcSUzI1NiIsImtpZCI6Ik9odGhfSHRzQ1NiM1ZQSVRQZlQ2NUJQRDFVN2FMOVNIWVpFWS15VktvTXMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZXZlbG9wbWVudCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJrOHMtdXNlci10b2tlbi02OXQ4bSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJrOHMtdXNlciIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjIyYjg4MDRmLWI4MjEtNGNlNy04MmYzLWQzNGI2YTU3MTc1NCIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZXZlbG9wbWVudDprOHMtdXNlciJ9.HXL97cbGmlpxem7xfLAyXwEzeb2c-dlGelqsBOXZGINPdVtyD7J_RSwPDg05ePAW9Q-n1cpUyHNxRWDIDtWuH-ANg6GpdeUgwKAHfwNqZgLAC96wf9tlYLPG0IVziMgYnqsJJxh4mWyJVhv3tx3NWlfu3ZbSZV3i6aSvIGJn_druc7fDfHobfLsbq_tV9Kh57hTM_9_bQHnwH_82rA6yLWeZPbyTq8ZEU7COrAkJLhKQc1Al6rB-3iGw0GEZ4cQ91DcFlnHrWEzGQRt84Rj_AALEaY7vUtLyFI3UXuDb0owwtae2VmwKf_qaN4dDWCCQ7o0FmXMfU65K9-noYrc_lQ" davarski/k8s-cli-utils:development /bin/sh
-/ # kubectl get po
-No resources found in development namespace.
-/ # kubectl run nginx --image=nginx --port=80 -n development
-pod/nginx created
-/ # kubectl get po
-NAME    READY   STATUS              RESTARTS   AGE
-nginx   0/1     ContainerCreating   0          3s
-/ # 
 
 / # kubectl get po
-NAME    READY   STATUS              RESTARTS   AGE
-nginx   0/1     ContainerCreating   0          83s
+No resources found in development namespace.
+
+/ # kubectl run nginx --image=nginx --port=80 -n development
+pod/nginx created
+
+/ # kubectl get po
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          2m1s
+
 / # kubectl get all -n development
 NAME        READY   STATUS              RESTARTS   AGE
 pod/nginx   0/1     ContainerCreating   0          86s
@@ -264,10 +263,6 @@ Error from server (Forbidden): horizontalpodautoscalers.autoscaling is forbidden
 Error from server (Forbidden): jobs.batch is forbidden: User "system:serviceaccount:development:k8s-user" cannot list resource "jobs" in API group "batch" in the namespace "development"
 Error from server (Forbidden): cronjobs.batch is forbidden: User "system:serviceaccount:development:k8s-user" cannot list resource "cronjobs" in API group "batch" in the namespace "development"
 / # 
-
-/ # kubectl get po
-NAME    READY   STATUS    RESTARTS   AGE
-nginx   1/1     Running   0          2m1s
 
 #Clean
 
