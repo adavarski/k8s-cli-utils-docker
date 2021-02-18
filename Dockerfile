@@ -1,0 +1,27 @@
+FROM alpine:3.8
+
+ENV KUBECONFIG=/kubeconfig \
+    KUBECTL_VERSION="v1.19.3" \
+    KUBE_AWS_VERSION="v0.12.2" \
+    KUBE_AWS_DLD_TEMP_LOCATION="kube-aws.tar.gz" \
+    HELM_VERSION="v3.4.1" \
+    HELM_DLD_TEMP_LOCATION="helm.tar.gz"
+
+COPY ./kubeconfig-template /
+COPY ./docker-entrypoint.sh /
+
+RUN apk --update add ca-certificates openssl \
+  && wget https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz -O ${HELM_DLD_TEMP_LOCATION} \
+  && tar zxvf ${HELM_DLD_TEMP_LOCATION} \
+  && mv linux-amd64/helm /usr/local/bin/helm \
+  && rm -rf linux-amd64 \
+  && wget https://dl.k8s.io/${KUBECTL_VERSION}/bin/linux/amd64/kubectl \
+  && chmod +x ./kubectl \ 
+  && mv ./kubectl /usr/local/bin/kubectl \
+  && wget https://github.com/kubernetes-incubator/kube-aws/releases/download/${KUBE_AWS_VERSION}/kube-aws-linux-amd64.tar.gz -O ${KUBE_AWS_DLD_TEMP_LOCATION} \
+  && tar -zxvf ${KUBE_AWS_DLD_TEMP_LOCATION} \
+  && mv linux-amd64/kube-aws /usr/local/bin \
+  && rm -rf linux-amd64 \
+  && chmod +x /docker-entrypoint.sh
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
